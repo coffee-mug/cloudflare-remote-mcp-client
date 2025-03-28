@@ -43,6 +43,8 @@ async function createAuthenticatedClient(sessionId, mcpServerHost) {
   };
   
   const serverUrl = new URL(`${mcpServerHost}/sse`);
+
+
   const transport = new SSEClientTransport(serverUrl, {
     eventSourceInit: {
       fetch: (url, init) => fetch(url, { ...init, headers }),
@@ -301,7 +303,18 @@ app.get("/sse", async (c) => {
   try {
     console.log("session", session, "session token", session.accessToken);
 
+
     const serverUrl = new URL(`${c.env.MCP_SERVER_HOST}/sse`);
+
+    const testResponse = await fetch(serverUrl, { 
+      headers, 
+      method: 'GET',
+      redirect: 'follow'
+    });
+    console.log("Test fetch status:", testResponse.status);
+    console.log("Test fetch headers:", Object.fromEntries(testResponse.headers.entries()));
+    console.log("SSE Server URL", serverUrl, serverUrl.pathname);
+
     const transport = new SSEClientTransport(serverUrl, {
       // Include any necessary authentication here if required
       eventSourceInit: {
@@ -354,7 +367,7 @@ app.get("/sse", async (c) => {
           if (!session.accessToken) {
             // New client
             const registrationInfos = {
-              redirect_uris: ["http://localhost:4000/oauth/callback"],
+              redirect_uris: [`${c.env.MCP_CLIENT_HOST}/oauth/callback`],
               token_endpoint_auth_method: "none",
               grant_types: ["authorization_code", "refresh_token"],
               response_types: ["code"],

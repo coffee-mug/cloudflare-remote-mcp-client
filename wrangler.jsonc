@@ -10,7 +10,7 @@
   //   "nodejs_compat"
   // ],
   "vars": {
-    "MCP_SERVER_HOST": "https://gmail-mcp-server.rpt.workers.dev",
+    "MCP_SERVER_HOST": "https://mcp-cloudflare.com",
     "MCP_CLIENT_HOST": "https://mcp-client.rpt.workers.dev"
   },
   // "kv_namespaces": [
