@@ -184,7 +184,7 @@ app.get("/", (c) => {
 
 
                 console.log(authSearchParams)
-                window.location.href = "http://localhost:8787/authorize?"+ authSearchParams.toString()
+                window.location.href = "${c.env.MCP_SERVER_HOST}/${config.authEndpoint}?"+ authSearchParams.toString()
                 
               }
             };
