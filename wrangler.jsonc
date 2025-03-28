@@ -5,13 +5,14 @@
   "compatibility_date": "2025-03-27",
   "dev": {
     "port": 4000
-  }
+  },
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
+  "vars": {
+    "MCP_SERVER_HOST": "http://localhost:8787",
+    "MCP_CLIENT_HOST": "http://localhost:4000"
+  },
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",
